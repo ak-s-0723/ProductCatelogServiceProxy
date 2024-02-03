@@ -1,0 +1,37 @@
+Q Why have we kept BaseModel as abstract class ?
+A Coz, it's incomplete and we don't want to create object of that Base Abstract Class.
+  We will extend that in other Models and use there.
+
+Q Difference between @RestController and @Controller
+A In our case, we are making requests on Postman, and Postman is fine with JSON/XML kind of
+  responses. It's not a human, Human wants to see a view.
+  So if your end goal is frontend calling your backend APIs and want to display view for that
+  then use @Controller. Just for testing purpose, please stick to @RestController only.
+  Source - https://medium.com/javarevisited/difference-between-controller-and-restcontroller-in-spring-boot-and-spring-mvc-216578ad445f#:~:text=%40Controller%20is%20used%20to%20declare,APIs%20which%20can%20return%20JSON.&text=In%20Spring%20MVC%2C%20both%20%40Controller,as%20per%20MVC%20Design%20pattern.
+
+Q Why used @Getter and @Setter and not @Data ?
+A As per our usecase, we just wanted to include getters and setters that time.
+  If in future, we would need ToString and RequiredArgsConstructor , then we will use @Data
+  as @Data is mixture of all
+  https://projectlombok.org/features/Data
+
+Q What is HTTP Options Method ?
+A suppose bar.com is making post request to foo.com to get some data form foo.com. Before this
+  post request could be made browser will send an Options request to foo.com asking the permission
+  to make a post request. If foo.com server identifies bar.com domain and allows bar.com to make
+  a post request then the actual request will be make otherwise, you will see a 400 bad request
+  error with reason as preflight failed.
+  Link - https://medium.com/@arsh1207/what-are-http-options-methods-2dc73615ecad
+       - https://aws.amazon.com/what-is/cross-origin-resource-sharing/#:~:text=Cross%2Dorigin%20resource%20sharing%20(CORS,resources%20in%20a%20different%20domain.
+
+Q Difference between DAO and DTO
+A DAO acts as a bridge between the database and the application. DTO acts as a data store from where the data is received and transferred to different layers i.e.,
+  to the DAO application.
+  Link - https://github.com/naman14310/Design_Patterns_In_Java_CRUD
+
+Q Can we write @RestController("/products")
+A We can , but it is not correct way, it will not work.
+  If we want to specify route at Class Level , Put it inside @RequestMapping , like we did.
+
+
+

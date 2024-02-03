@@ -9,7 +9,7 @@ public class ProductController {
 
     @GetMapping("")
     public String getProducts() {
-        return "Returing list of all products";
+        return "Returning list of all products";
     }
 
     @GetMapping("{id}")
