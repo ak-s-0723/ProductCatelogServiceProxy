@@ -5,12 +5,14 @@ import org.example.productcatalogserviceproxy.Models.Product;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 public interface IProductService {
-    String getProducts();
+    List<Product> getProducts();
 
     Product getProduct(Long productId);
 
-    String createProduct(ProductDto productDto);
+    Product createProduct(ProductDto productDto);
 
     String updateProduct(ProductDto productDto);
 }
