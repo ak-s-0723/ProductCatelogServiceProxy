@@ -9,7 +9,7 @@ import java.util.UUID;
 @Getter
 @Setter
 public class BaseModel {
-    private UUID id; /*  A class that represents an immutable universally unique identifier (UUID). A UUID represents a 128-bit value. */
+    private Long id; /*  A class that represents an immutable universally unique identifier (UUID). A UUID represents a 128-bit value. */
     private Date createdAt;
     private Date lastUpdatedAt;
     private Status status;
