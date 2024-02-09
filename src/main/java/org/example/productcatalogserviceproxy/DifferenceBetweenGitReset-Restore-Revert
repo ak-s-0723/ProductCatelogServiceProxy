@@ -1,0 +1,34 @@
+reset has 3 options soft, hard and mixed
+ hard will delete your commit including all changes and you can't get your changes anyway
+
+ git reset --hard HEAD^1
+
+ soft will un-commit your changes and you will be able to see files still in staging area. If you run git status command after soft reset, you will see files in green color
+
+ git reset --soft HEAD^1
+
+ mix will uncommit your changes and remove from staging area as well. If you run git status command after mixed reset , you will see files in red color.
+
+ git reset --mixed HEAD^1
+
+
+----------------------------------
+
+Let's say today I have pushed my changes in master branch which shouldn't be going and I want to revert all my changes (basically undo, whatever I have done) , I will run
+
+git revert <<commit_id>>  to raise a revert commit
+
+-----------------------------------
+
+I have spent 2 days doing some code changes in my local and want to flush all changes in my local, so i will use restore command
+It will wipe out all changes done by me and state of my project would be as last commited
+
+If I have add that file in staging area (green) and just wants to bring back from staging area (red), I can use
+git restore --staged a.java
+
+For multiple files, git restore --staged *.java
+
+If you want to discard uncommitted local changes in a file, simply omit the --staged flag. Keep in mind, however, that you cannot undo this!
+
+git restore a.java
+
