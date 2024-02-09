@@ -1,6 +1,7 @@
 package org.example.productcatalogserviceproxy.Controllers;
 
 import org.example.productcatalogserviceproxy.Dtos.ProductDto;
+import org.example.productcatalogserviceproxy.Models.Category;
 import org.example.productcatalogserviceproxy.Models.Product;
 import org.example.productcatalogserviceproxy.Services.IProductService;
 import org.springframework.http.HttpStatus;
@@ -37,17 +38,38 @@ public class ProductController {
             Product product = productService.getProduct(productId);
             return new ResponseEntity<>(product, headers, HttpStatus.OK);
         } catch(Exception exception) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            //return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            throw exception;
         }
     }
 
     @PostMapping("")
     public Product createProduct(@RequestBody ProductDto productDto) {
-       return productService.createProduct(productDto);
+        Product product = getProduct(productDto);
+       return productService.createProduct(product);
     }
 
-    @PatchMapping("")
-    public String updateProduct(@RequestBody ProductDto productDto) {
-        return "updating Product "+productDto;
+    @PatchMapping("{id}")
+    public Product updateProduct(@PathVariable Long id,@RequestBody ProductDto productDto) {
+        Product product = getProduct(productDto);
+        return productService.updateProduct(id,product);
     }
+
+    private Product getProduct(ProductDto productDto) {
+        Product product = new Product();
+        product.setTitle(productDto.getTitle());
+        product.setDescription(productDto.getDescription());
+        product.setPrice(productDto.getPrice());
+        product.setImageUrl(productDto.getImage());
+        Category category = new Category();
+        category.setName(productDto.getCategory());
+        product.setCategory(category);
+        product.setId(productDto.getId());
+        return product;
+    }
+
+    //@ExceptionHandler({IllegalArgumentException.class,NullPointerException.class})
+    //private ResponseEntity<String> handleException() {
+    //    return new ResponseEntity<String>("kuch toh phata hai",HttpStatus.INTERNAL_SERVER_ERROR);
+   //}
 }
