@@ -1,0 +1,55 @@
+Class 3 Introduction to SpringBoot
+https://docs.google.com/document/d/1Gn2ib5YhhpcFUiWGAUbCpg0ZPh3m_wSA-9IolGMjkIE/edit
+https://medium.com/@anshita.bhasin/exploring-amazon-prime-videos-architecture-migrating-from-microservices-to-monolith-for-aacbf9fabc73
+https://www.atlassian.com/microservices/microservices-architecture/microservices-vs-monolith
+
+Class 4 APIs and REST
+https://docs.google.com/forms/d/e/1FAIpQLSd0BmCUaQFPcH_TMGye5xOVzCsMdxu7FLdeH2xAuMyb5rLwqw/viewform?usp=sf_link
+https://start.spring.io/
+https://docs.spring.io/spring-framework/reference/core/beans/introduction.html
+https://spring.io/guides/gs/rest-service/
+https://docs.spring.io/spring-framework/reference/overview.html
+
+For demonstrating APIs - https://razorpay.com/docs/api/orders/#order-entity
+
+Go through this doc as well - https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design
+
+PRD of ECOMMERCE WEBSITE - https://docs.google.com/document/d/1Gn2ib5YhhpcFUiWGAUbCpg0ZPh3m_wSA-9IolGMjkIE/edit#heading=h.hteovoit9b96
+
+We will call these 3rd Party APIs - https://fakestoreapi.com/docs
+
+Just go through this document SOAP vs REST - https://aws.amazon.com/compare/the-difference-between-soap-rest/#:~:text=The%20two%20applications%20share%20data,exchange%20data%20in%20multiple%20formats
+
+Class 5
+CORS -
+https://aws.amazon.com/what-is/cross-origin-resource-sharing/#:~:text=Cross%2Dorigin%20resource%20sharing%20(CORS,resources%20in%20a%20different%20domain.
+
+options API
+https://medium.com/@arsh1207/what-are-http-options-methods-2dc73615ecad
+
+Class 10
+https://www.baeldung.com/hibernate-inheritance
+
+https://www.baeldung.com/hibernate-fetchmode
+
+https://spring.io/blog/2023/08/31/this-is-the-beginning-of-the-end-of-the-n-1-problem-introducing-single-query
+
+https://hackernoon.com/3-ways-to-deal-with-hibernate-n1-problem
+
+https://www.baeldung.com/jpa-cascade-types
+
+https://www.baeldung.com/hibernate-lazy-eager-loading
+
+SubSelect Vs Join
+FetchMode.SUBSELECT reduces significatly the number of queries because takes only two queries in comparisson to the N+1 queries of the FetchMode.SELECT.
+
+FetchMode.JOIN makes even less queries, just 1,but at the cost of duplicated data and a heavier response.
+An SQL join is still more efficient than the nested selects approach—even though it performs the same index lookups—because it avoids a lot of network communication. It is even faster if the total amount of transferred data is bigger because of the duplication of employee attributes for each sale. That is because of the two dimensions of performance: response time and throughput;
+
+So, the main issue about using SUBSELECT is that is hard to control and may be loading a whole graph of entities into memory. With Batch fetching you fetch the associated entity in a separate query as SUBSELECT (so you don't suffer duplicates), gradually and most important you query only related entities (so you don't suffer from potentially load a huge graph) because the IN subquery is filtered by the IDs retrieved by the outter query).
+
+
+
+
+
+
