@@ -64,8 +64,19 @@ class ProductRepoTest {
     void demonstrateHowJPAGeneratesQueries() {
         //Product product = productRepo.findProductById(2L);
         //List<Product> products = productRepo.findProductByPriceBetween(250D,2500D);
+        /*
+        Reason: Failed to create query for method public abstract
+        java.util.List org.example.productcatalogserviceproxy.Repositories.
+        ProductRepo.findAllOrderByIdDesc();
+         */
+        //List<Product> products = productRepo.findAllOrderByIdDesc();
         //List<Product> products = productRepo.findAllByOrderByIdDesc();
-        List<Product> products = productRepo.findAllByIsSpecialTrue();
+        //List<Product> products = productRepo.findAllByIsSpecialTrue();
+
+
+        //String name = productRepo.getProductTitleFromId(2L);
+
+        String c_name = productRepo.getCategoryNameFromProductId(2L);
                 System.out.println("debug");
 
 

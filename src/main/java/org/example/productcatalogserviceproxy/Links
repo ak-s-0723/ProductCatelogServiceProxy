@@ -48,6 +48,14 @@ An SQL join is still more efficient than the nested selects approach—even thou
 
 So, the main issue about using SUBSELECT is that is hard to control and may be loading a whole graph of entities into memory. With Batch fetching you fetch the associated entity in a separate query as SUBSELECT (so you don't suffer duplicates), gradually and most important you query only related entities (so you don't suffer from potentially load a huge graph) because the IN subquery is filtered by the IDs retrieved by the outter query).
 
+Class 13 - Unit Testing
+
+https://www.baeldung.com/junit-5
+
+https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices
+
+https://testing.googleblog.com/2013/08/testing-on-toilet-test-behavior-not.html
+
 
 
 
