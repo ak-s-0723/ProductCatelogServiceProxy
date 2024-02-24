@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class ProductControllerTest {
@@ -40,6 +40,7 @@ class ProductControllerTest {
         assertNotNull(productResponseEntity);
         assertEquals(1000D,productResponseEntity.getBody().getPrice());
         assertEquals("Iphone15",productResponseEntity.getBody().getTitle());
+        verify(productService,times(1)).getProduct(1L);
     }
 
     @Test
