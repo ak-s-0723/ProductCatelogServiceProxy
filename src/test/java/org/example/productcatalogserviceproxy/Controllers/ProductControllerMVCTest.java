@@ -17,8 +17,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(ProductController.class)
 public class ProductControllerMVCTest {
@@ -40,14 +39,18 @@ public class ProductControllerMVCTest {
         product.setTitle("IPhone12");
         Product product2 = new Product();
         product2.setTitle("MacBook");
-        productList.add(product2);
         productList.add(product);
+        productList.add(product2);
         when(productService.getProducts()).thenReturn(productList);
 
         //object -> JSON -> STRING
         mockMvc.perform(get("/products"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(objectMapper.writeValueAsString(productList)));
+                .andExpect(content().string(objectMapper.writeValueAsString(productList)))
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$[0].title").value("IPhone12"));
+
+
     }
 
     @Test
@@ -67,6 +70,15 @@ public class ProductControllerMVCTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(productToCreate)))
                         .andExpect(status().isOk())
-                        .andExpect(content().string(objectMapper.writeValueAsString(expectedProduct)));
+                        .andExpect(content().string(objectMapper.writeValueAsString(expectedProduct)))
+                .andExpect(jsonPath("$.length()").value(10))
+                .andExpect(jsonPath("$.title").value("Orange"));
+
+
     }
 }
+
+//Product : {
+//    title : "",
+//        description : "",
+//        }
