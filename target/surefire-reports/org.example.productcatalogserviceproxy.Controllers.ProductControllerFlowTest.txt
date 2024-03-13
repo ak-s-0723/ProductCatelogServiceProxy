@@ -1,0 +1,11 @@
+-------------------------------------------------------------------------------
+Test set: org.example.productcatalogserviceproxy.Controllers.ProductControllerFlowTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.334 s <<< FAILURE! -- in org.example.productcatalogserviceproxy.Controllers.ProductControllerFlowTest
+org.example.productcatalogserviceproxy.Controllers.ProductControllerFlowTest.Test_CreateAndFetchAndUpdate_RunsSuccessfully -- Time elapsed: 0.266 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.example.productcatalogserviceproxy.Models.Product.getTitle()" because the return value of "org.springframework.http.ResponseEntity.getBody()" is null
+	at org.example.productcatalogserviceproxy.Controllers.ProductControllerFlowTest.Test_CreateAndFetchAndUpdate_RunsSuccessfully(ProductControllerFlowTest.java:40)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
