@@ -5,6 +5,7 @@ import org.example.productcatalogserviceproxy.Repositories.ProductRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StorageProductService implements IProductService {
@@ -20,8 +21,9 @@ public class StorageProductService implements IProductService {
     }
 
     @Override
-    public Product getProduct(Long productId) {
-        return null;
+    public Product getProduct(Long id) {
+        Product product = productRepo.findProductById(id);
+        return product;
     }
 
     @Override
