@@ -1,6 +1,8 @@
 package org.example.productcatalogserviceproxy.Repositories;
 
 import org.example.productcatalogserviceproxy.Models.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -27,4 +29,6 @@ public interface ProductRepo extends JpaRepository<Product,Long>  {
     String getCategoryNameFromProductId(@Param("id1") Long id);
 
     List<Product> findAllByIsSpecialTrue();
+
+    Page<Product> findByTitleEquals(String query, Pageable pageable);
 }
