@@ -43,6 +43,11 @@ public class ProductController {
         }
     }
 
+    @GetMapping("/{uid}/{pid}")
+    public Product getProductDetails(@PathVariable Long uid, @PathVariable Long pid) {
+        return productService.getProductDetails(uid,pid);
+    }
+
     @PostMapping("")
     public Product createProduct(@RequestBody ProductDto productDto) {
         Product product = getProduct(productDto);
@@ -54,6 +59,8 @@ public class ProductController {
         Product product = getProduct(productDto);
         return productService.updateProduct(id,product);
     }
+
+
 
     private Product getProduct(ProductDto productDto) {
         Product product = new Product();

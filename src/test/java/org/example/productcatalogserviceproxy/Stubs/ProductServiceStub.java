@@ -12,6 +12,10 @@ import java.util.Map;
 public class ProductServiceStub implements IProductService {
     Map<Long,Product> products;
 
+    public Product getProductDetails(Long userId, Long productId) {
+        return null;
+    }
+
     public ProductServiceStub() {
         products = new HashMap<Long,Product>();
     }
