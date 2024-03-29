@@ -7,6 +7,8 @@ import org.example.productcatalogserviceproxy.Models.Category;
 import org.example.productcatalogserviceproxy.Models.Product;
 import org.springframework.beans.factory.BeanFactoryExtensionsKt;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Primary;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,13 +23,17 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Primary
+@Service
 public class FakeStoreProductService implements IProductService {
     private RestTemplateBuilder restTemplateBuilder;
     private FakeStoreAPIClient fakeStoreAPIClient;
+    private RedisTemplate<String,Object> redisTemplate;
 
-    public FakeStoreProductService(RestTemplateBuilder restTemplateBuilder, FakeStoreAPIClient fakeStoreAPIClient) {
+    public FakeStoreProductService(RestTemplateBuilder restTemplateBuilder, FakeStoreAPIClient fakeStoreAPIClient, RedisTemplate<String,Object> redisTemplate) {
         this.restTemplateBuilder = restTemplateBuilder;
         this.fakeStoreAPIClient = fakeStoreAPIClient;
+        this.redisTemplate = redisTemplate;
     }
 
     @Override
@@ -44,7 +50,25 @@ public class FakeStoreProductService implements IProductService {
 
     @Override
     public Product getProduct(Long productId) {
-        return getProduct(fakeStoreAPIClient.getProduct(productId));
+        // check if product is in cache
+        // if yes :
+        //      read from cache
+        // else :
+        //     call fakestore and get result
+        //     store result in cache
+
+        //productid_epochtimestamp
+        FakeStoreProductDto fakeStoreProductDto = null;
+        fakeStoreProductDto = (FakeStoreProductDto) redisTemplate.opsForHash().get("PRODUCTS",productId);
+        if(fakeStoreProductDto != null) {
+            System.out.println("Read from Cache");
+            return getProduct(fakeStoreProductDto);
+        }
+
+        fakeStoreProductDto = fakeStoreAPIClient.getProduct(productId);
+        System.out.println("Read from Fakestore API");
+        redisTemplate.opsForHash().put("PRODUCTS",productId,fakeStoreProductDto);
+        return getProduct(fakeStoreProductDto);
     }
 
     @Override

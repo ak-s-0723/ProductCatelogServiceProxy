@@ -31,7 +31,7 @@ public class SearchController {
 //            searchResults.add(getProductDto(product));
 //        }
 //        return searchResults;
-        return searchService.searchProducts(searchRequestDto.getQuery(), searchRequestDto.getPageNumber(), searchRequestDto.getPageSize());
+        return searchService.searchProducts(searchRequestDto.getQuery(), searchRequestDto.getPageNumber(), searchRequestDto.getPageSize(), searchRequestDto.getSortParamList());
     }
 
      ProductDto getProductDto(Product product) {
